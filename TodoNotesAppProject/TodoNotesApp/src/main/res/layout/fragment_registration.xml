@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="50dp">
+	<ImageView
+			android:id="@+id/regLogo"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_above="@+id/regMainLayout"
+			android:layout_centerHorizontal="true"
+			android:src="@drawable/logo"/>
+	<LinearLayout
+			android:id="@+id/regMainLayout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_centerInParent="true">
+		<EditText
+				android:id="@+id/regUserNameField"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:hint="@string/username" />
+		<EditText
+				android:id="@+id/regPasswordField"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:inputType="textPassword"
+				android:hint="@string/password" />
+		<EditText
+				android:id="@+id/regPasswordAgainField"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:inputType="textPassword"
+				android:hint="@string/passwordagain" />
+		<EditText
+				android:id="@+id/regMailField"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:inputType="textEmailAddress"
+				android:hint="@string/mailaddress" />
+		<Button
+				android:id="@+id/regButton"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/registration" />
+	</LinearLayout>
+</RelativeLayout>
