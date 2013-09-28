@@ -1,7 +1,10 @@
 package hu.plezervi.elte.gfmwa.todonotesapp.models;
 
+import hu.plezervi.elte.gfmwa.todonotesapp.Utils;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -78,7 +81,14 @@ public class Todo {
         int userId = obj.optInt("userId");
         String title = obj.optString("title");
         String text = obj.optString("text");
+        String tempDate = obj.optString("modified");
+        String d = tempDate.replace('T',' ').replace('Z',' ');
         Date date = null;
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return new Todo(id, userId, title, text, date);
     }
 }
