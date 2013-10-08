@@ -11,9 +11,12 @@
 	<string name="loginerror">A felhasználónév/jelszó páros nem megfelelő</string>
 	<string name="mailaddress">E-mail cím</string>
 	<string name="networkerror">Ismeretlen hálózati hiba, kérem próbálja meg később!</string>
+	<string name="notodo">Nincsenek todo-id a listában</string>
 	<string name="password">Jelszó</string>
 	<string name="passwordagain">Jelszó újra</string>
 	<string name="registration">Regisztráció</string>
 	<string name="registrationsucc">A regisztráció sikeres volt</string>
+	<string name="todocontent">Tartalom</string>
+	<string name="tododetail">Adatok</string>
 	<string name="username">Felhasználónév</string>
 </resources>

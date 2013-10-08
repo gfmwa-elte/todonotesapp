@@ -97,6 +97,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
 
     @Override
     public void loginFinished(boolean success, String errorMsg) {
+        if(pDialog != null) pDialog.dismiss();
         if(success) {
             if(listener != null) listener.loginSuccessed();
         } else {
