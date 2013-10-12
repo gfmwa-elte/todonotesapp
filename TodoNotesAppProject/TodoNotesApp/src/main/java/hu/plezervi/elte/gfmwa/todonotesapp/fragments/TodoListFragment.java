@@ -9,9 +9,11 @@ import android.widget.ListView;
 import hu.plezervi.elte.gfmwa.todonotesapp.Globals;
 import hu.plezervi.elte.gfmwa.todonotesapp.R;
 import hu.plezervi.elte.gfmwa.todonotesapp.TodoArrayAdapter;
+import hu.plezervi.elte.gfmwa.todonotesapp.Utils;
 import hu.plezervi.elte.gfmwa.todonotesapp.models.Todo;
 import hu.plezervi.elte.gfmwa.todonotesapp.net.TodoListAsyncTask;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,18 +34,32 @@ public class TodoListFragment extends ListFragment implements TodoListAsyncTask.
         this.listener = listener;
     }
 
+    public void onSaveInstanceState (Bundle outState) {
+        outState.putSerializable("todolist", (ArrayList<Todo>)todos);
+    }
+
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_todolist, container, false);
+        View v = inflater.inflate(R.layout.fragment_todolist, container, false);
+        if(savedInstanceState != null) {
+            todos = (ArrayList<Todo>)savedInstanceState.getSerializable("todolist");
+        } else {
+            todos = null;
+        }
+        return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
 
-        if(getActivity() != null) {
-            listAsyncTask = new TodoListAsyncTask(getActivity() ,this);
-            listAsyncTask.execute(Globals.LOGGED_USER_ID);
+        if(todos != null) {
+            todoListDownloaded(todos);
+        } else {
+            if(getActivity() != null) {
+                listAsyncTask = new TodoListAsyncTask(getActivity() ,this);
+                listAsyncTask.execute(Globals.LOGGED_USER_ID);
+            }
         }
     }
 

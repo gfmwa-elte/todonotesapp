@@ -23,6 +23,9 @@ public class TodoFirstPageFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_first, container, false);
         titleTextView = (TextView) v.findViewById(R.id.fragmentFirstTodoTitleView);
         textTextView = (TextView) v.findViewById(R.id.fragmentFirstTodoTextView);
+        if(savedInstanceState != null) {
+            todo = (Todo)savedInstanceState.getSerializable("todo");
+        }
         return v;
     }
 
@@ -37,5 +40,10 @@ public class TodoFirstPageFragment extends Fragment {
             titleTextView.setText(todo.getTitle());
             textTextView.setText(todo.getText());
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable("todo", todo);
     }
 }

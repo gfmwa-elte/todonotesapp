@@ -3,6 +3,7 @@ package hu.plezervi.elte.gfmwa.todonotesapp.models;
 import hu.plezervi.elte.gfmwa.todonotesapp.Utils;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,7 +11,8 @@ import java.util.Date;
 /**
  * Created by plezerv on 2013.09.24..
  */
-public class Todo {
+
+public class Todo implements Serializable {
     private int id;
     private int userId;
     private String title;

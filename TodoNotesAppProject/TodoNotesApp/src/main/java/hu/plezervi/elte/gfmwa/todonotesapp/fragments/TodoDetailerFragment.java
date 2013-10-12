@@ -22,6 +22,8 @@ public class TodoDetailerFragment extends Fragment {
     private class MyViewPagerAdapter extends FragmentStatePagerAdapter {
 
         private Todo todo;
+        TodoFirstPageFragment first;
+        TodoSecondPageFragment second;
 
         public MyViewPagerAdapter(FragmentManager manager, Todo todo) {
             super(manager);
@@ -32,11 +34,11 @@ public class TodoDetailerFragment extends Fragment {
         public Fragment getItem(int i) {
             switch(i) {
                 case 0:
-                    TodoFirstPageFragment first = new TodoFirstPageFragment();
+                    first = new TodoFirstPageFragment();
                     first.setTodo(todo);
                     return first;
                 case 1:
-                    TodoSecondPageFragment second = new TodoSecondPageFragment();
+                    second = new TodoSecondPageFragment();
                     second.setTodo(todo);
                     return second;
             }
@@ -59,9 +61,17 @@ public class TodoDetailerFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable("todo", todo);
+    }
+
+    @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_tododetailer, container, false);
         viewPager = (ViewPager) v.findViewById(R.id.detailerpager);
+        if(savedInstanceState != null) {
+            todo = (Todo)savedInstanceState.getSerializable("todo");
+        }
         return v;
     }
 

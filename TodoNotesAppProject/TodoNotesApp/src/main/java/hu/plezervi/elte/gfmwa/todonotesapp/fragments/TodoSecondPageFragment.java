@@ -25,6 +25,9 @@ public class TodoSecondPageFragment extends Fragment {
         userIdTextView = (TextView) v.findViewById(R.id.fragmentSecondUserIdTextView);
         todoIdTextView = (TextView) v.findViewById(R.id.fragmentSecondTodoIdTextView);
         todoDateTextView = (TextView) v.findViewById(R.id.fragmentSecondTodoDateTextView);
+        if(savedInstanceState != null) {
+            todo = (Todo)savedInstanceState.getSerializable("todo");
+        }
         return v;
     }
 
@@ -40,5 +43,10 @@ public class TodoSecondPageFragment extends Fragment {
             todoIdTextView.setText(todo.getId() + "");
             todoDateTextView.setText(todo.getModified().toString());
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable("todo", todo);
     }
 }
